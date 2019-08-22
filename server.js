@@ -38,17 +38,15 @@ let images = fs.readdirSync('./uploads')
 //          cb('Error: Upload Images Only!')
 //      }
 // }
-app.use(cors())
+//app.use(cors())
 app.use(function (req, res, next) {
-
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-let uploads =  require('path').join(__dirname,'/uploads');
-app.use(express.static(uploads))
+
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(
@@ -58,6 +56,10 @@ app.use(
 )
 app.use(fileUpload())
 
+
+app.get('/',(req,res)=>{
+    res.send('Welcome to backend')
+})
 
  app.get('/images',(req,res)=>{
     res.send({images})
