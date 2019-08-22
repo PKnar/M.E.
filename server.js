@@ -38,10 +38,10 @@ let images = fs.readdirSync('./uploads')
 //          cb('Error: Upload Images Only!')
 //      }
 // }
+app.use(cors())
 let uploads =  require('path').join(__dirname,'/uploads');
 app.use(express.static(uploads))
 app.use(logger('dev'))
-app.use(cors())
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
